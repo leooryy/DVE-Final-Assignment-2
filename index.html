@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    html{
+      font-family: "Nunito", sans-serif;
+    }
+    button{
+      border-color: #f05353;
+      border-radius: 50px;
+      padding: 8px 15px;
+      background-color: white;
+    }
+    button:hover{
+      
+      color: white;
+      background-color: rgb(176, 56, 56);
+    }
+    .header {
+      height: 60px; /* Adjust height as needed */
+      width: 100%;
+      background-color: #ffffff; /* Header background */
+      display: flex;
+      align-items: center; /* Vertically center the logo */
+      padding: 0 20px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #e0e0e0; /* Optional: separator line */
+      z-index: 10;
+    }
+    .logo {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 80px;   /* adjust size */
+  z-index: 10;    /* keeps it above the 3D model */
+}
+model-viewer {
+  position: relative;
+  width: 100%;
+  height: 84%;
+  background-color: #c4c4c4;
+}
+.HotspotAnnotation{
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
+  font-family: Nunito;
+  font-size: 18px;
+  font-weight: 700;
+  left: calc(100% + 1em);
+  max-width: 128px;
+  overflow-wrap: break-word;
+  padding: 0.5em 1em;
+  position: absolute;
+  top: 50%;
+  width: max-content;
+}
+  </style>
+  <body>
+    <div class="header">
+      <img src="logo.png" class="logo">
+    </div>
+    <div class="controls" style="position:absolute; bottom:20px; left:30px">
+<div>Animation:
+<button id="default1Btn" onClick="Btn01()">Drawer
+</button>
+<button id="default2Btn" onClick="Btn02()">Exploded View
+</button>
+<button id="default3Btn" onClick="Btn03()">Back Panel
+</button>
+<button id="default4Btn" onClick="Btn04()">Screen
+</button>
+<button id="default5Btn" onClick="Btn05()">Toothbrush
+</button>
+<button id="default6Btn" onClick="Btn06()">Reset
+</button>
+<button id="pauseBtn" onClick="pauseAnimation()">Pause Animation
+</button>
+</div>
+</div>
+<img src="logo.png" class="logo">
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="animation + MV.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="0.38" environment-image="monochrome_studio_04_4k.hdr" exposure="0.7" shadow-softness="0.37" camera-orbit="-358.7deg 73.25deg 0.7692m" field-of-view="25deg" id="gear">
+
+     <button class="Hotspot" slot="hotspot-2" data-position="-0.10551409079622091m 0.04247888429012343m 0.03263458785732175m" data-normal="-0.0019302155397014176m 0.6846738626182206m 0.728847018321003m" data-visibility-attribute="visible" onMouseOver="addhotspot2()" onMouseOut="removehotspot2()" onclick="moveCamera('41.52deg 75.35deg 0m', '-0.11m 0.06m 0.03m')">
+          <div class="HotspotAnnotation" id="hotspot2" style="visibility:hidden">Floss Drawer</div>
+      </button>
+
+
+      <button class="Hotspot" slot="hotspot-3" data-position="0.12542605975065518m 0.09128083817244673m 0.03801711624537789m" data-normal="0.07479892362971745m -0.11025705948602067m 0.991084507929234m" data-visibility-attribute="visible" onMouseOver="addhotspot3()" onMouseOut="removehotspot3()" onclick="moveCamera('-23.02deg 71.51deg 0m', '0.12m 0.08m 0.04m')">
+          <div class="HotspotAnnotation" id="hotspot3" style="visibility:hidden">Toothbrush</div>
+      </button>
+
+<button class="Hotspot" slot="hotspot-4" data-position="0.08327722870997159m 0.03528109394224653m 0.04128061421189349m" data-normal="0.16397390803683978m 0.07154995592139302m 0.983866434680426m" data-visibility-attribute="visible" onMouseOver="addhotspot4()" onMouseOut="removehotspot4()" onclick="moveCamera('-22.67deg 68.02deg 0m', '0.08m 0.03m 0.04m')">
+          <div class="HotspotAnnotation" id="hotspot4" style="visibility:hidden">Toothpaste Dispenser</div>
+      </button>
+
+<button class="Hotspot" slot="hotspot-5" data-position="-0.034043434519140506m 0.08134606509785813m -0.0016720976022121734m" data-normal="1.7775125476440554e-17m 1m 2.920233192167611e-16m" data-visibility-attribute="visible" onMouseOver="addhotspot5()" onMouseOut="removehotspot5()" onclick="moveCamera('0.3535deg 54.42deg 0m', '-0.03m 0.08m 0m')">
+          <div class="HotspotAnnotation" id="hotspot5" style="visibility:hidden">Screen</div>
+      </button>
+
+<button class="Hotspot" slot="hotspot-7" data-position="0.040695842778673726m 0.05416603701048268m -0.039282691235351545m" data-normal="0m 2.220446049250313e-16m -1m" data-visibility-attribute="visible" onMouseOver="addhotspot7()" onMouseOut="removehotspot7()" onclick="moveCamera('-231.3deg 85.86deg 0m', '0.04m 0.05m -0.04m')">
+          <div class="HotspotAnnotation" id="hotspot7" style="visibility:hidden">Lid</div>
+      </button>
+      <h1 style="position: absolute; left: 25px; bottom: 65px; font-size:xxx-large; color: #f05353;">ShinyPal</h1>
+ <h4 style="position: absolute; left: 25px; bottom: 56px; font-weight: 400;">Variations:</h4>
+<div class="controls" style="position:absolute; bottom:75px; left:110px">
+<div>
+<button onClick="VBtn01()" style="background-color:rgb(202, 180, 227); padding: 10px; border-color: #000000;"></button>
+<button onClick="VBtn02()" style="background-color:rgb(153, 200, 208); padding: 10px; border-color: #000000;"></button>
+<button onClick="VBtn03()" style="background-color:rgb(189, 201, 162); padding: 10px; border-color: #000000;"></button>
+</div>
+</div>
+
+<div style="position:absolute; top:30px; right:25px">
+    <button onClick="resetView()">Reset View</button>
+    <button onClick="setOrbit('358.6deg 90.35deg 0.6734m')">Front</button>
+    <button onClick="setOrbit('360deg 3.14deg 0.7692m')">Top</button>
+    <button onClick="setOrbit('180.3deg 180deg 0.6838m')">Bottom</button>
+</div>
+
+
+
+    </model-viewer>  
+
+<script>
+      function setOrbit(orbit) {
+           document.getElementById('gear').cameraOrbit = orbit;
+}
+
+function addhotspot2(){
+document.getElementById("hotspot2").style.visibility="visible"
+}
+function removehotspot2(){
+document.getElementById("hotspot2").style.visibility="hidden";
+}
+
+function addhotspot3(){
+document.getElementById("hotspot3").style.visibility="visible"
+}
+function removehotspot3(){
+document.getElementById("hotspot3").style.visibility="hidden";
+}
+
+function addhotspot4(){
+document.getElementById("hotspot4").style.visibility="visible"
+}
+function removehotspot4(){
+document.getElementById("hotspot4").style.visibility="hidden";
+}
+
+function addhotspot5(){
+document.getElementById("hotspot5").style.visibility="visible"
+}
+function removehotspot5(){
+document.getElementById("hotspot5").style.visibility="hidden";
+}
+
+function addhotspot7(){
+document.getElementById("hotspot7").style.visibility="visible"
+}
+function removehotspot7(){
+document.getElementById("hotspot7").style.visibility="hidden";
+}
+
+</script>
+
+<script>
+function VBtn01() {
+document.getElementById('gear').variantName = "v2";}
+function VBtn02() {
+document.getElementById('gear').variantName = "v3";}
+function VBtn03() {
+document.getElementById('gear').variantName = "v1";}
+</script>
+
+<script>
+function Btn01()
+{document.getElementById('gear').pause();
+document.getElementById('gear').animationName = "Drawer Anim";
+document.getElementById('gear').play(); }
+function Btn02()
+{document.getElementById('gear').pause();
+document.getElementById('gear').animationName = "Exploded View";
+document.getElementById('gear').play(); }
+function Btn03()
+{document.getElementById('gear').pause();
+document.getElementById('gear').animationName = "Panel Open";
+document.getElementById('gear').play(); }
+function Btn04()
+{document.getElementById('gear').pause();
+document.getElementById('gear').animationName = "Screen Anim";
+document.getElementById('gear').play(); }
+function Btn05()
+{document.getElementById('gear').pause();
+document.getElementById('gear').animationName = "Toothbrush Anim";
+document.getElementById('gear').play(); }
+function Btn06()
+{document.getElementById('gear').pause();
+document.getElementById('gear').animationName = "Reset";
+document.getElementById('gear').pause(); }
+function pauseAnimation()
+{document.getElementById('gear').pause(); }
+
+</script>
+
+<script>
+
+const viewer = document.getElementById("gear");
+
+function moveCamera(orbit, target) {
+  viewer.cameraOrbit = orbit;
+  viewer.cameraTarget = target;
+}
+
+function resetView() {
+  const viewer = document.getElementById('gear');
+  viewer.cameraOrbit = '-358.7deg 73.25deg 0.7692m';
+  viewer.cameraTarget = '0m 0.0725m 0m'; 
+}
+
+</script>
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
